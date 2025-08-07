@@ -164,7 +164,7 @@ static expanded_key expand_key(const unsigned_eight_bit_integer key[16])
     {
         last_word = round_keys.words[i - 1];
         
-        if (i % 4 == 0)
+        if (i & 3 == 0)
             last_word = substitute_word(rotate_word_leftward(last_word)) ^ round_constants[i >> 2];
         
         round_keys.words[i] = round_keys.words[i - 4] ^ last_word;
