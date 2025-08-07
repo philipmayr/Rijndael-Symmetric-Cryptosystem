@@ -58,24 +58,24 @@ static matrix shift_rows(matrix state)
 {
     unsigned_eight_bit_integer byte_placeholder;
 
-    byte_placeholder    = state.matrix[1][0];
-    state.matrix[1][0]  = state.matrix[1][1];
-    state.matrix[1][1]  = state.matrix[1][2];
-    state.matrix[1][2]  = state.matrix[1][3];
-    state.matrix[1][3]  = byte_placeholder;
+    byte_placeholder   = state.matrix[1][0];
+    state.matrix[1][0] = state.matrix[1][1];
+    state.matrix[1][1] = state.matrix[1][2];
+    state.matrix[1][2] = state.matrix[1][3];
+    state.matrix[1][3] = byte_placeholder;
 
-    byte_placeholder    = state.matrix[2][0];
-    state.matrix[2][0]  = state.matrix[2][2];
-    state.matrix[2][2]  = byte_placeholder;
-    byte_placeholder    = state.matrix[2][1];
-    state.matrix[2][1]  = state.matrix[2][3];
-    state.matrix[2][3]  = byte_placeholder;
+    byte_placeholder   = state.matrix[2][0];
+    state.matrix[2][0] = state.matrix[2][2];
+    state.matrix[2][2] = byte_placeholder;
+    byte_placeholder   = state.matrix[2][1];
+    state.matrix[2][1] = state.matrix[2][3];
+    state.matrix[2][3] = byte_placeholder;
 
-    byte_placeholder    = state.matrix[3][3];
-    state.matrix[3][3]  = state.matrix[3][2];
-    state.matrix[3][2]  = state.matrix[3][1];
-    state.matrix[3][1]  = state.matrix[3][0];
-    state.matrix[3][0]  = byte_placeholder;
+    byte_placeholder   = state.matrix[3][3];
+    state.matrix[3][3] = state.matrix[3][2];
+    state.matrix[3][2] = state.matrix[3][1];
+    state.matrix[3][1] = state.matrix[3][0];
+    state.matrix[3][0] = byte_placeholder;
 
     return state;
 }
@@ -192,8 +192,8 @@ static void print_state(const matrix state, integer round)
     
     for (integer row = 0; row < 4; row++)
     {
-        for (int col = 0; col < 4; col++)
-            printf("%02x ", state.matrix[row][col]);
+        for (int column = 0; column < 4; column++)
+            printf("%02x ", state.matrix[row][column]);
         printf("\n");
     }
     
@@ -250,8 +250,8 @@ static void read_key_from_user(unsigned_eight_bit_integer key[16])
     integer length = strlen(buffer);
     
     for (integer i = 0; i < 16; i++) {
-        if (i < (integer)length)
-            key[i] = (unsigned_eight_bit_integer)buffer[i];
+        if (i < (integer) length)
+            key[i] = (unsigned_eight_bit_integer) buffer[i];
         else
             key[i] = '\0';
     }
@@ -271,7 +271,7 @@ block read_clear_text_block(void)
     for (integer i = 0; i < 16; i++)
     {
         if (i < length)
-            clear_text.bytes[i] = (unsigned_eight_bit_integer)input[i];
+            clear_text.bytes[i] = (unsigned_eight_bit_integer) input[i];
         else
             clear_text.bytes[i] = 0x00;
     }
